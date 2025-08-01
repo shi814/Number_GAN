@@ -1,13 +1,16 @@
 import numpy as np 
-from tensorflow.keras.datasets import mnist 
+#from tensorflow.keras.datasets import mnist 
 from config import Config
+import os
 
 def load_and_preprocess_data():
-    """加载并预处理mnist数据集"""
+    """从本地mnist.npz加载并预处理mnist数据集"""
     config = Config()
-    #加载数据集（忽略标签，无监督学习），一次性读取60000张手写数字图片，x_train是60000*28*28的矩阵，_是标签
-    (x_train, _), (_, _) = mnist.load_data()
-
+    # 指定本地mnist数据集路径
+    mnist_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'mnist_data', 'mnist.npz')
+    with np.load(mnist_path) as data:
+        x_train = data['x_train']
+        #x_test = data['x_test'] # 如果后续需要可以加上
     #归一化：原始像素0～255，归一化到[-1,1]
     x_train = (x_train.astype(np.float32) - 127.5) / 127.5
 

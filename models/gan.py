@@ -1,5 +1,5 @@
 from tensorflow.keras.models import Model
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import legacy as legacy_optimizers
 from tensorflow.keras.layers import Input
 from config import Config
 from .generator import build_generator
@@ -9,7 +9,7 @@ class GAN:
     def __init__(self):
         self.config = Config()
         #创建adam优化器（带自定义学习率和动量）
-        optimizer = Adam(self.config.LEARNING_RATE,self.config.BETA_1)
+        optimizer = legacy_optimizers.Adam(self.config.LEARNING_RATE, self.config.BETA_1)
 
         #构建并编译判别器
         self.discriminator = build_discriminator()

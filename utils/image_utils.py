@@ -8,8 +8,8 @@ def create_output_dir():
     """创建输出目录"""
     config = Config()
     #递归创建目录（exist_ok=True表示如果目录存在，不报错）
-    os.makedirs(config.OUTPUT_DIR,exist_ok = True)
-    os.makedirs(config.MODEL_DIR,exist_ok = True)
+    os.makedirs(config.OUTPUT_PATH,exist_ok = True)
+    os.makedirs(config.MODEL_PATH,exist_ok = True)
 
 def save_generated_images(generator,epoch,rows=5,cols=5):
     """保存生成的图像网络"""
@@ -32,15 +32,15 @@ def save_generated_images(generator,epoch,rows=5,cols=5):
             axs[i,j].axis('off')#关闭坐标轴
             cnt += 1
     #  保存图像文件
-    fig.savefig(f"{config.OUTPUT_DIR}/mnist_{epoch}.png")
+    fig.savefig(f"{config.OUTPUT_PATH}/mnist_{epoch}.png")
     plt.close()
 
 def save_model_weights(generator,discriminator,epoch):
     """保存模型权重"""
     config = Config()
     #生成器
-    generator.save_weights(f"{config.MODEL_DIR}/generator_{epoch}.h5")
+    generator.save_weights(f"{config.MODEL_PATH}/generator_{epoch}.h5")
     #判别器
-    discriminator.save_weights(f"{config.MODEL_DIR}/discriminator_{epoch}.h5")
+    discriminator.save_weights(f"{config.MODEL_PATH}/discriminator_{epoch}.h5")
 
 
