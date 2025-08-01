@@ -1,9 +1,9 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.losses import Input
+from tensorflow.keras.layers import Input
 from config import Config
-from generator import build_generator
-from discriminator import build_discriminator
+from .generator import build_generator
+from .discriminator import build_discriminator
 
 class GAN:
     def __init__(self):

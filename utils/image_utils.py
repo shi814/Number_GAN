@@ -8,14 +8,14 @@ def create_output_dir():
     """创建输出目录"""
     config = Config()
     #递归创建目录（exist_ok=True表示如果目录存在，不报错）
-    os.makedirs(config.OUTPUT_DIR,exist_ok = Ture)
-    os.makedirs(config.MODEL_DIR,exist_ok = Ture)
+    os.makedirs(config.OUTPUT_DIR,exist_ok = True)
+    os.makedirs(config.MODEL_DIR,exist_ok = True)
 
 def save_generated_images(generator,epoch,rows=5,cols=5):
     """保存生成的图像网络"""
     config = Config()
     # 生成噪声向量
-    noise = generate_noise(rows * cols,config.LATENT_DIM):
+    noise = generate_noise(rows * cols,config.LATENT_DIM)
     #用生成器生成图像
     gen_imgs = generator.predict(noise)
 
